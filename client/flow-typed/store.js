@@ -1,9 +1,6 @@
 // @flow
 declare type AppActions = {}
 
-declare type AppState = {}
-
-declare type Store = {
-  actions: AppActions,
-  state: AppState
+declare type AppState = {
+  isLoading?: boolean
 }

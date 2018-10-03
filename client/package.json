@@ -5,10 +5,11 @@
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-loading": "^2.0.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "truffle-contract": "^4.0.0-next.0",
-    "web3": "^1.0.0-beta.35"
+    "truffle-contract": "^3.0.6",
+    "web3": "0.20.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,6 +23,7 @@
     "link-contracts:win32": "cd src && mklink \\D contracts ..\\..\\build\\contracts"
   },
   "devDependencies": {
+    "eslint-plugin-flowtype": "^2.50.3",
     "run-script-os": "^1.0.3"
   }
 }

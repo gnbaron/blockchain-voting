@@ -1,5 +1,12 @@
 {
-  "extends": ["eslint:recommended", "react-app"],
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "flowtype"
+  ],
   "rules": {
     "indent": [
       "error",
