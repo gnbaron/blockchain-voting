@@ -1,0 +1,17 @@
+.header {
+  align-items: center;
+  background: var(--header-color);
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.title {
+  color: var(--font-color);
+  font-size: 1.3rem;
+}

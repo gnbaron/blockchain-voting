@@ -1,9 +1,7 @@
 // @flow
 import React, { createContext, Fragment, PureComponent } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import truffleContract from 'truffle-contract'
-import { getWeb3 } from './utils'
-import VotingContract from './contracts/Voting.json'
+import { getContract, type Contract, createPoll } from './contract'
 import Loading from './components/loading'
 import Header from './components/header'
 import Home from './polls'
@@ -11,31 +9,39 @@ import Home from './polls'
 const Context = createContext()
 
 type State = {
-  store: AppState,
+  contract?: Contract,
   isLoading: boolean,
-  instance?: any,
-  web3?: any
+  store: AppState
 }
 
 export default class App extends PureComponent<{}, State> {
-  state = { isLoading: true, store: {} }
+  state: State = {
+    isLoading: true,
+    store: {
+      fetchStatus: 'UNSENT',
+      polls: []
+    }
+  }
 
   async componentDidMount() {
-    // Get network provider and web3 instance.
-    const web3 = await getWeb3()
+    const contract = await getContract()
+    this.setState({ contract, isLoading: false })
+  }
 
-    // Get the contract instance.
-    const contract = truffleContract(VotingContract)
-    contract.setProvider(web3.currentProvider)
-    const instance = await contract.deployed()
-
-    this.setState({ isLoading: false, instance, web3 })
+  onCreatePoll = (contract: Contract) => (
+    description: string,
+    options: string[],
+    tokens: string[]
+  ) => {
+    createPoll(contract, description, options, tokens)
   }
 
   render() {
-    const { isLoading, store: state } = this.state
-    const actions = {}
-    return isLoading ? (
+    const { contract, isLoading, store: state } = this.state
+    const actions = contract && {
+      onCreatePoll: this.onCreatePoll(contract)
+    }
+    return isLoading || !actions ? (
       <Loading />
     ) : (
       <Context.Provider value={{ actions, state }}>

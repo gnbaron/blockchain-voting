@@ -1,7 +1,18 @@
+:root {
+  --background-color: #D6CE85;
+  --header-color: #55574D;
+  --content-color: #37473F;
+  --font-color: white;
+  --warning: #FAE06C;
+  --dark-color: #28242B;
+}
+
 html, body, #root { height: 100% }
 
 body {
+  background: var(--background-color);
+  color: var(--font-color);
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
