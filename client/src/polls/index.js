@@ -1,11 +1,23 @@
 // @flow
 import React, { PureComponent } from 'react'
 import { StoreConsumer } from '../app'
+import Loading from '../components/loading'
 
-type Props = {}
+type Props = {
+  actions: AppActions,
+  state: AppState
+}
 
-export default class Home extends PureComponent<Props> {
+class Home extends PureComponent<Props> {
   render() {
-    return <StoreConsumer>{store => <div>{store.state}</div>}</StoreConsumer>
+    return <div>home</div>
   }
 }
+
+export default () => (
+  <StoreConsumer>
+    {store =>
+      store ? <Home actions={store.actions} state={store.state} /> : <Loading />
+    }
+  </StoreConsumer>
+)

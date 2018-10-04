@@ -1,10 +1,10 @@
 // @flow
-import React, { createContext, PureComponent } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { createContext, Fragment, PureComponent } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import truffleContract from 'truffle-contract'
-import Loading from 'react-loading'
 import { getWeb3 } from './utils'
 import VotingContract from './contracts/Voting.json'
+import Loading from './components/loading'
 import Header from './components/header'
 import Home from './polls'
 
@@ -36,14 +36,14 @@ export default class App extends PureComponent<{}, State> {
     const { isLoading, store: state } = this.state
     const actions = {}
     return isLoading ? (
-      <Loading type="spin" color="000" />
+      <Loading />
     ) : (
       <Context.Provider value={{ actions, state }}>
         <Router>
-          <div>
+          <Fragment>
             <Header />
             <Route exact path="/" component={Home} />
-          </div>
+          </Fragment>
         </Router>
       </Context.Provider>
     )
