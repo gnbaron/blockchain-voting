@@ -1,12 +1,16 @@
 // @flow
-import React, { createContext, Fragment, PureComponent } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React, { Fragment, PureComponent } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom'
+import { Context } from './store'
 import { getContract, type Contract, createPoll } from './contract'
 import Loading from './components/loading'
 import Header from './components/header'
-import Home from './polls'
-
-const Context = createContext()
+import Polls from './polls'
 
 type State = {
   contract?: Contract,
@@ -18,7 +22,7 @@ export default class App extends PureComponent<{}, State> {
   state: State = {
     isLoading: true,
     store: {
-      fetchStatus: 'UNSENT',
+      fetchStatus: 'DONE',
       polls: []
     }
   }
@@ -48,12 +52,13 @@ export default class App extends PureComponent<{}, State> {
         <Router>
           <Fragment>
             <Header />
-            <Route exact path="/" component={Home} />
+            <Switch>
+              <Route path="/polls" component={Polls} />
+              <Redirect to="/polls" />
+            </Switch>
           </Fragment>
         </Router>
       </Context.Provider>
     )
   }
 }
-
-export const StoreConsumer = Context.Consumer

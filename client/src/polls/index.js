@@ -1,23 +1,14 @@
 // @flow
-import React, { PureComponent } from 'react'
-import { StoreConsumer } from '../app'
-import Loading from '../components/loading'
+import React, { Fragment } from 'react'
+import { Route, type ContextRouter } from 'react-router-dom'
+import PollList from './list'
+import PollForm from './form'
 
-type Props = {
-  actions: AppActions,
-  state: AppState
-}
-
-class Home extends PureComponent<Props> {
-  render() {
-    return <div>home</div>
-  }
-}
-
-export default () => (
-  <StoreConsumer>
-    {store =>
-      store ? <Home actions={store.actions} state={store.state} /> : <Loading />
-    }
-  </StoreConsumer>
+const Polls = ({ match }: ContextRouter) => (
+  <Fragment>
+    <Route exact path={`${match.url}`} component={PollList} />
+    <Route path={`${match.url}/create`} component={PollForm} />
+  </Fragment>
 )
+
+export default Polls
