@@ -1,0 +1,55 @@
+.step {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  min-height: 4rem;
+  justify-content: center;
+  margin-top: auto;
+  width: 100%;
+}
+
+.description {
+  padding: 0.5rem;
+  width: 80%;
+}
+
+.voters {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 50%;
+}
+
+.voters > .label {
+  color: var(--grey);
+}
+
+.voters > .input {
+  width: 3rem;
+  text-align: center;
+}
+
+.proposal {
+  margin-bottom: 1rem;
+  width: 80%;
+}
+
+.warning {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 2rem;
+  text-align: center;
+}
+
+.tokens {
+  height: 100%;
+  width: 70%;
+  text-align: center;
+}

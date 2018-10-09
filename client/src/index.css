@@ -1,18 +1,32 @@
 :root {
-  --background-color: #D6CE85;
-  --header-color: #55574D;
-  --content-color: #37473F;
-  --font-color: white;
+  /* colors */
+  --primary-color: #443854;
+  --secondary-color: #E0DFCF;
+
+  --grey: #AEB1B7;
+  --dark-grey: #3F3F3F;
+  --light-grey: #CCC;
+
+  --font-color: #FFF;
+
+  --error: #DB3D3D;
   --warning: #FAE06C;
-  --dark-color: #28242B;
+
+  /* dimensions */
+  --header-height: 4rem;
 }
 
 html, body, #root { height: 100% }
 
 body {
-  background: var(--background-color);
+  background: var(--secondary-color);
   color: var(--font-color);
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0.3125rem 0 var(--primary-color);
 }

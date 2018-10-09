@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import Web3 from 'web3'
+import TokenGenerator from 'uuid-token-generator'
 
-const getWeb3 = () =>
-  new Promise((resolve, reject) => {
+export function getWeb3() {
+  return new Promise((resolve, reject) => {
     // Wait for loading completion to avoid race conditions with web3 injection timing.
     window.addEventListener('load', () => {
       let web3 = window.web3
@@ -27,5 +28,13 @@ const getWeb3 = () =>
       }
     })
   })
+}
 
-export { getWeb3 }
+export function generateTokens(count) {
+  const tokeng = new TokenGenerator()
+  const tokens = []
+  for (let i = 0; i < count; i++) {
+    tokens.push(tokeng.generate())
+  }
+  return tokens
+}

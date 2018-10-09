@@ -1,0 +1,29 @@
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100% - var(--header-height));
+}
+
+.box {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.9375rem 0 var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  width: 30rem;
+}
+
+.content {
+  height: 100%;
+  overflow: auto;
+  padding: 1rem;
+  position: relative;
+}
+
+.error {
+  margin-bottom: 1rem;
+  padding: 0.5rem 2rem;
+}

@@ -10,7 +10,14 @@ declare type Poll = {
   proposals: Proposal[]
 }
 
-declare type AppActions = {}
+declare type AppActions = {
+  createPoll: (
+    description: string,
+    options: string[],
+    tokens: string[]
+  ) => void,
+  listPolls: () => void
+}
 
 declare type AppState = {
   fetchStatus: 'UNSENT' | 'LOADING' | 'DONE',

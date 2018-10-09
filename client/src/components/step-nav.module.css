@@ -1,0 +1,21 @@
+.wrapper {
+  align-items: center;
+  border-bottom: 0.0625rem solid var(--light-grey);
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+}
+
+.step {
+  display: block;
+  height: 0.75rem;
+  width: 0.75rem;
+  margin: 0.3125rem;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.2);
+}
+
+.active {
+  background: rgba(0,0,0,0.4);
+  background: var(--primary-color);
+}

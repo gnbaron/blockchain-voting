@@ -3,15 +3,6 @@ import truffleContract from 'truffle-contract'
 import { getWeb3 } from './utils'
 import VotingContract from './contracts/Voting.json'
 
-const toAscii = web3 => value => {
-  return web3.utils.toAscii(value).replace(/\u0000/g, '')
-}
-
-const fromAscii = web3 => value => {
-  const { fromAscii } = web3.utils
-  return fromAscii(value)
-}
-
 export type Contract = {
   instance: any,
   web3: any
@@ -24,6 +15,7 @@ export async function getContract(): Promise<Contract> {
   // Get the contract instance.
   const contract = truffleContract(VotingContract)
   contract.setProvider(web3.currentProvider)
+  contract.defaults({ from: web3.eth.accounts[0], gas: 6721975 })
   const instance = await contract.deployed()
 
   return { instance, web3 }
@@ -37,9 +29,9 @@ export function createPoll(
 ): Promise<*> {
   const { instance, web3 } = contract
   return instance.createPoll(
-    fromAscii(web3)(description),
-    options.map(fromAscii(web3)),
-    tokens.map(fromAscii(web3))
+    web3.fromAscii(description),
+    options.map(web3.fromAscii),
+    tokens.map(web3.fromAscii)
   )
 }
 
@@ -47,36 +39,47 @@ export function createPoll(
 //   instance.castVote(fromAscii(token), pollIndex, proposalIndex)
 // }
 
-// export async function listPolls(instance) {
-//   const length = await instance.getPollsMapSize()
-//   const polls = []
-//   for (let i = 0; i < length.valueOf(); i++) {
-//     polls.push(getPoll(instance, i))
-//   }
-//   return Promise.all(polls)
-// }
+export async function listPolls(contract: Contract) {
+  const { instance } = contract
+  const length = await instance.getPollsMapSize()
+  const polls = []
+  for (let i = 0; i < length.valueOf(); i++) {
+    polls.push(getPoll(contract, i))
+  }
+  return Promise.all(polls)
+}
 
-// async function getPoll(instance, index) {
-//   const [description, proposalsCount] = await instance.getPoll(index)
-//   return {
-//     index,
-//     description: toAscii(description),
-//     proposals: await getProposals(instance, index, proposalsCount)
-//   }
-// }
+async function getPoll(contract: Contract, id: number): Promise<Poll> {
+  const { instance, web3 } = contract
+  const [description, proposalsCount] = await instance.getPoll(id)
+  return {
+    id,
+    description: web3.toAscii(description),
+    proposals: await getProposals(contract, id, proposalsCount)
+  }
+}
 
-// function getProposals(instance, pollIndex, count) {
-//   const proposals = []
-//   for (let i = 0; i < count.valueOf(); i++) {
-//     proposals.push(getProposal(instance, pollIndex, i))
-//   }
-//   return Promise.all(proposals)
-// }
+function getProposals(
+  contract: Contract,
+  pollId: number,
+  count: number
+): Promise<Proposal[]> {
+  const proposals = []
+  for (let i = 0; i < count.valueOf(); i++) {
+    proposals.push(getProposal(contract, pollId, i))
+  }
+  return Promise.all(proposals)
+}
 
-// async function getProposal(instance, pollIndex, index) {
-//   const data = await instance.getProposal(pollIndex, index)
-//   return {
-//     index,
-//     description: toAscii(data)
-//   }
-// }
+async function getProposal(
+  contract: Contract,
+  pollId: number,
+  id: number
+): Promise<Proposal> {
+  const { instance, web3 } = contract
+  const data = await instance.getProposal(pollId, id)
+  return {
+    id,
+    description: web3.toAscii(data)
+  }
+}

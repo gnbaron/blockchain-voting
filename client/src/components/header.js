@@ -1,14 +1,13 @@
 // @flow
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import './header.css'
+import styles from './header.module.css'
 
 const Header = () => {
   return (
-    <div className="header">
-      <Link className="link" to="/">
-        <span className="title">Blockchain Voting</span>
+    <div className={styles.header}>
+      <Link className={styles.link} to="/">
+        <span className={styles.title}>Blockchain Voting</span>
       </Link>
     </div>
   )

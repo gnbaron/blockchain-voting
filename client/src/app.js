@@ -7,32 +7,30 @@ import {
   Switch
 } from 'react-router-dom'
 import { Context } from './store'
-import { getContract, type Contract, createPoll } from './contract'
+import { getContract, type Contract, createPoll, listPolls } from './contract'
 import Loading from './components/loading'
 import Header from './components/header'
 import Polls from './polls'
 
 type State = {
   contract?: Contract,
-  isLoading: boolean,
   store: AppState
 }
 
 export default class App extends PureComponent<{}, State> {
   state: State = {
-    isLoading: true,
     store: {
-      fetchStatus: 'DONE',
+      fetchStatus: 'UNSENT',
       polls: []
     }
   }
 
   async componentDidMount() {
     const contract = await getContract()
-    this.setState({ contract, isLoading: false })
+    this.setState({ contract })
   }
 
-  onCreatePoll = (contract: Contract) => (
+  handleCreatePoll = (contract: Contract) => (
     description: string,
     options: string[],
     tokens: string[]
@@ -40,12 +38,27 @@ export default class App extends PureComponent<{}, State> {
     createPoll(contract, description, options, tokens)
   }
 
+  handleListPolls = (contract: Contract) => () => {
+    this.setState(
+      { store: { fetchStatus: 'LOADING', polls: [] } },
+      async () => {
+        this.setState({
+          store: {
+            fetchStatus: 'DONE',
+            polls: await listPolls(contract)
+          }
+        })
+      }
+    )
+  }
+
   render() {
-    const { contract, isLoading, store: state } = this.state
+    const { contract, store: state } = this.state
     const actions = contract && {
-      onCreatePoll: this.onCreatePoll(contract)
+      createPoll: this.handleCreatePoll(contract),
+      listPolls: this.handleListPolls(contract)
     }
-    return isLoading || !actions ? (
+    return !contract ? (
       <Loading />
     ) : (
       <Context.Provider value={{ actions, state }}>

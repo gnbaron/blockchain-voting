@@ -1,0 +1,13 @@
+.wrapper {
+  border-radius: 0.5rem;
+}
+
+.error {
+  background: var(--error);
+  color: var(--font-color);
+}
+
+.warning {
+  background: var(--warning);
+  color: var(--dark-grey);
+}

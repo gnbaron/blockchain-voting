@@ -1,0 +1,12 @@
+.input {
+  border: 0.0625rem solid var(--light-grey);
+  border-radius: 0.5rem;
+  color: var(--dark-grey);
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.input::placeholder {
+  color: var(--grey);
+  font-style: italic;
+}
