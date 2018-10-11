@@ -5,8 +5,10 @@ import styles from './loading.module.css'
 
 const BLACK = '#000'
 
-export default ({ color = BLACK }: { color?: string }) => (
+const LoadingIndicator = ({ color = BLACK }: { color?: string }) => (
   <div className={styles.wrapper}>
     <Loading type="spin" color={color} />
   </div>
 )
+
+export default LoadingIndicator

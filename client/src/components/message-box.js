@@ -9,7 +9,7 @@ type Props = {
   type: 'error' | 'warning'
 }
 
-const Header = (props: Props) => {
+const MessageBox = (props: Props) => {
   return (
     <div
       className={classnames(
@@ -23,4 +23,4 @@ const Header = (props: Props) => {
   )
 }
 
-export default Header
+export default MessageBox

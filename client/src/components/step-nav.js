@@ -8,7 +8,7 @@ type Props = {
   steps: string[]
 }
 
-export default ({ active, steps }: Props) => (
+const StepNav = ({ active, steps }: Props) => (
   <div className={styles.wrapper}>
     {steps.map((step, index) => (
       <span
@@ -21,3 +21,5 @@ export default ({ active, steps }: Props) => (
     ))}
   </div>
 )
+
+export default StepNav

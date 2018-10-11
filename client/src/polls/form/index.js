@@ -24,7 +24,7 @@ type State = {
   step: 'basic' | 'proposals' | 'tokens'
 }
 
-class PollForm extends PureComponent<Props, State> {
+export class PollForm extends PureComponent<Props, State> {
   state: State = {
     data: {
       description: '',
