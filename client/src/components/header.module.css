@@ -4,6 +4,8 @@
   display: flex;
   height: var(--header-height);
   justify-content: center;
+  position: sticky;
+  top: 0;
   width: 100%;
 }
 

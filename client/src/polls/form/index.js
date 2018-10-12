@@ -69,8 +69,9 @@ export class PollForm extends PureComponent<Props, State> {
     }
   }
 
-  handleNavigateToPollList = () => {
-    const { history } = this.props
+  handleListPolls = () => {
+    const { actions, history } = this.props
+    actions.listPolls()
     history.push('/polls')
   }
 
@@ -121,7 +122,7 @@ export class PollForm extends PureComponent<Props, State> {
             {step === 'tokens' && (
               <TokenStep
                 tokens={generatedTokens}
-                onNavigateToPollList={this.handleNavigateToPollList}
+                onListPolls={this.handleListPolls}
               />
             )}
           </div>

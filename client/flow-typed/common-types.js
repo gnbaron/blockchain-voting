@@ -6,16 +6,18 @@ declare type Proposal = {
 
 declare type Poll = {
   id: number,
+  closed: boolean,
   description: string,
   proposals: Proposal[]
 }
 
 declare type AppActions = {
+  closePoll: (id: number) => Promise<*>,
   createPoll: (
     description: string,
     options: string[],
     tokens: string[]
-  ) => void,
+  ) => Promise<*>,
   listPolls: () => void
 }
 

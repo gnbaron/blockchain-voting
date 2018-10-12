@@ -3,11 +3,11 @@
 }
 
 .error {
-  background: var(--error);
+  background: var(--red);
   color: var(--font-color);
 }
 
 .warning {
-  background: var(--warning);
+  background: var(--yellow);
   color: var(--dark-grey);
 }

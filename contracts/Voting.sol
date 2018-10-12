@@ -12,7 +12,7 @@ contract Voting {
     }
 
     struct Poll {
-        bool finished;
+        bool closed;
         string description;
         uint proposalsCount;
         mapping (uint => Proposal) proposals;
@@ -59,7 +59,7 @@ contract Voting {
         Voter storage voter = poll.voters[token];
         Proposal storage proposal = poll.proposals[proposalIndex];
 
-        require(poll.finished == false, "Poll is ended.");
+        require(poll.closed == false, "Poll is closed.");
         require(voter.isValid == true, "Invalid token.");
         require(voter.voted == false, "Voter already cast his vote.");
 
@@ -67,10 +67,10 @@ contract Voting {
         voter.voted = true;
     }
 
-    function finishPoll(uint index) public {
+    function closePoll(uint index) public {
         Poll storage poll = _polls[index];
-        require(poll.finished == false, "Poll already ended.");
-        poll.finished = true;
+        require(poll.closed == false, "Poll already closed.");
+        poll.closed = true;
         emit pollEnded(index);
     }
 
@@ -84,7 +84,7 @@ contract Voting {
 
     function getPoll(uint index) external view returns (string, uint, bool) {
         Poll storage poll = _polls[index];
-        return (poll.description, poll.proposalsCount, poll.finished);
+        return (poll.description, poll.proposalsCount, poll.closed);
     }
 
     function getProposal(uint pollIndex, uint index) external view returns (bytes32) {
@@ -94,7 +94,7 @@ contract Voting {
 
     function getVoteCount(uint pollIndex, uint proposalIndex) external view returns (uint) {
         Poll storage poll = _polls[pollIndex];
-        require(poll.finished == true, "Poll is not ended.");
+        require(poll.closed == true, "Poll is not ended.");
         return poll.proposals[proposalIndex].voteCount;
     }
 }

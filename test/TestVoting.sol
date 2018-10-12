@@ -34,11 +34,11 @@ contract TestVoting {
     function testItGetsAPoll() public {
         string memory description;
         uint proposals;
-        bool finished;
-        (description, proposals, finished) = voting.getPoll(0);
+        bool closed;
+        (description, proposals, closed) = voting.getPoll(0);
         Assert.equal(description, _description, "It should have the correct description");
         Assert.equal(proposals, _proposals.length, "It should have the correct number of proposals");
-        Assert.isFalse(finished, "It should not be finished yet");
+        Assert.isFalse(closed, "It should not be closed yet");
     }
 
     function testItGetsTheProposals() public {
@@ -54,12 +54,12 @@ contract TestVoting {
     }
 
     function testItFinishesAPoll() public {
-        bool finished;
-        voting.finishPoll(0);
-        (,, finished) = voting.getPoll(0);
-        Assert.isTrue(finished, "It should be finished");
+        bool closed;
+        voting.closePoll(0);
+        (,, closed) = voting.getPoll(0);
+        Assert.isTrue(closed, "It should be closed");
     }
-    
+
     function testItCountsTheVotes() public {
         Assert.equal(voting.getVoteCount(0, 0), 0, "The 1st proposal should not have votes");
         Assert.equal(voting.getVoteCount(0, 1), 2, "The 2nd proposal should have 2 votes");

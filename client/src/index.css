@@ -9,8 +9,8 @@
 
   --font-color: #FFF;
 
-  --error: #DB3D3D;
-  --warning: #FAE06C;
+  --red: #DB3D3D;
+  --yellow: #FAE06C;
 
   /* dimensions */
   --header-height: 4rem;

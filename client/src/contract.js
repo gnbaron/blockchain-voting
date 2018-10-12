@@ -35,6 +35,10 @@ export function createPoll(
   )
 }
 
+export function closePoll(contract: Contract, id: number): Promise<*> {
+  return contract.instance.closePoll(id)
+}
+
 // export function castVote(instance, token, pollIndex, proposalIndex) {
 //   instance.castVote(fromAscii(token), pollIndex, proposalIndex)
 // }
@@ -51,9 +55,10 @@ export async function listPolls(contract: Contract) {
 
 async function getPoll(contract: Contract, id: number): Promise<Poll> {
   const { instance, web3 } = contract
-  const [description, proposalsCount] = await instance.getPoll(id)
+  const [description, proposalsCount, closed] = await instance.getPoll(id)
   return {
     id,
+    closed,
     description: web3.toAscii(description),
     proposals: await getProposals(contract, id, proposalsCount)
   }

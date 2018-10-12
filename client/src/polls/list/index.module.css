@@ -1,0 +1,43 @@
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100% - var(--header-height));
+  overflow: auto;
+}
+
+.poll {
+  align-items: center;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.9375rem 0 var(--primary-color);
+  color: var(--dark-grey);
+  display: flex;
+  font-weight: bold;
+  padding: 1rem;
+  margin: 1rem 0;
+  max-width: 70%;
+  width: 70%;
+}
+
+.description {
+  max-height: 6rem;
+  overflow: hidden;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  min-width: 20%;
+}
+
+.button {
+  margin-left: 0.5rem;
+}
+
+.alert {
+  background: var(--red) !important;
+}

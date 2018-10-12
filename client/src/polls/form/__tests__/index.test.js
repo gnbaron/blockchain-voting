@@ -8,7 +8,8 @@ jest.mock('../../../utils')
 describe('poll form', () => {
   const defaults = {
     actions: {
-      createPoll: jest.fn()
+      createPoll: jest.fn(),
+      listPolls: jest.fn()
     },
     history: {},
     state: {}
@@ -130,10 +131,14 @@ describe('poll form', () => {
     })
 
     it('navigates to poll list', () => {
+      const actions = { ...defaults.actions, listPolls: jest.fn() }
       const history = { push: jest.fn() }
-      const tree = shallow(<PollForm {...defaults} history={history} />)
+      const tree = shallow(
+        <PollForm {...defaults} actions={actions} history={history} />
+      )
       tree.setState({ step: 'tokens', generatedTokens })
-      tree.find('TokenStep').simulate('navigateToPollList')
+      tree.find('TokenStep').simulate('listPolls')
+      expect(actions.listPolls).toHaveBeenCalled()
       expect(history.push).toHaveBeenCalledWith('/polls')
     })
   })
