@@ -12,6 +12,7 @@ declare type Poll = {
 }
 
 declare type AppActions = {
+  castVote: (token: string, pollId: number, proposalId: number) => Promise<*>,
   closePoll: (id: number) => Promise<*>,
   createPoll: (
     description: string,

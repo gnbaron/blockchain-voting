@@ -8,7 +8,7 @@ export type Contract = {
   web3: any
 }
 
-export async function getContract(): Promise<Contract> {
+export default async function getContract(): Promise<Contract> {
   // Get network provider and web3 instance.
   const web3 = await getWeb3()
 
@@ -39,9 +39,15 @@ export function closePoll(contract: Contract, id: number): Promise<*> {
   return contract.instance.closePoll(id)
 }
 
-// export function castVote(instance, token, pollIndex, proposalIndex) {
-//   instance.castVote(fromAscii(token), pollIndex, proposalIndex)
-// }
+export function castVote(
+  contract: Contract,
+  token: string,
+  pollId: number,
+  proposalId: number
+) {
+  const { instance, web3 } = contract
+  instance.castVote(web3.fromAscii(token), pollId, proposalId)
+}
 
 export async function listPolls(contract: Contract) {
   const { instance } = contract

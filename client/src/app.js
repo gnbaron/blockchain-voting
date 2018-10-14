@@ -7,9 +7,9 @@ import {
   Switch
 } from 'react-router-dom'
 import { Context } from './store'
-import {
-  getContract,
+import getContract, {
   type Contract,
+  castVote,
   closePoll,
   createPoll,
   listPolls
@@ -34,6 +34,14 @@ export default class App extends PureComponent<{}, State> {
   async componentDidMount() {
     const contract = await getContract()
     this.setState({ contract })
+  }
+
+  handleCastVote = (contract: Contract) => (
+    token: string,
+    pollId: number,
+    proposalId: number
+  ) => {
+    return castVote(contract, token, pollId, proposalId)
   }
 
   handleClosePoll = (contract: Contract) => (id: number) => {
@@ -65,6 +73,7 @@ export default class App extends PureComponent<{}, State> {
   render() {
     const { contract, store: state } = this.state
     const actions = contract && {
+      castVote: this.handleCastVote(contract),
       closePoll: this.handleClosePoll(contract),
       createPoll: this.handleCreatePoll(contract),
       listPolls: this.handleListPolls(contract)

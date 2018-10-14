@@ -3,9 +3,9 @@ import React from 'react'
 import Loading from 'react-loading'
 import styles from './loading.module.css'
 
-const BLACK = '#000'
+const PRIMARY_COLOR = '#443854'
 
-const LoadingIndicator = ({ color = BLACK }: { color?: string }) => (
+const LoadingIndicator = ({ color = PRIMARY_COLOR }: { color?: string }) => (
   <div className={styles.wrapper}>
     <Loading type="spin" color={color} />
   </div>

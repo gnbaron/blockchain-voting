@@ -53,7 +53,7 @@ contract TestVoting {
         voting.castVote(_tokens[2], 0, 1);
     }
 
-    function testItFinishesAPoll() public {
+    function testItClosesAPoll() public {
         bool closed;
         voting.closePoll(0);
         (,, closed) = voting.getPoll(0);

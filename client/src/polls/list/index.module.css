@@ -5,6 +5,19 @@
   justify-content: center;
   min-height: calc(100% - var(--header-height));
   overflow: auto;
+  padding: 2rem 10%;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 3rem;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.button {
+  width: 6rem;
 }
 
 .poll {
@@ -17,27 +30,30 @@
   font-weight: bold;
   padding: 1rem;
   margin: 1rem 0;
-  max-width: 70%;
-  width: 70%;
+  width: 100%;
 }
 
 .description {
-  max-height: 6rem;
+  max-height: 5.5rem;
   overflow: hidden;
 }
 
 .controls {
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   margin-left: auto;
-  min-width: 20%;
+  min-width: 15%;
 }
 
-.button {
+.controls > .button {
   margin-left: 0.5rem;
 }
 
-.alert {
+.close {
   background: var(--red) !important;
+}
+
+.results {
+  background: var(--green) !important;
 }

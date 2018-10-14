@@ -12,7 +12,7 @@ type Props = ContextRouter & {
   state: AppState
 }
 
-class PollList extends PureComponent<Props> {
+export class PollList extends PureComponent<Props> {
   componentDidMount() {
     const {
       actions,
@@ -28,6 +28,11 @@ class PollList extends PureComponent<Props> {
     history.push(`/polls/${id}/vote`)
   }
 
+  handleCreatePoll = () => {
+    const { history } = this.props
+    history.push('/polls/create')
+  }
+
   handleClosePoll = (id: number) => async () => {
     const { actions } = this.props
     await actions.closePoll(id)
@@ -41,7 +46,6 @@ class PollList extends PureComponent<Props> {
 
   render() {
     const {
-      match,
       state: { fetchStatus, polls }
     } = this.props
     const isLoading = fetchStatus === 'LOADING'
@@ -50,16 +54,23 @@ class PollList extends PureComponent<Props> {
     return isLoading ? (
       <Loading />
     ) : isEmpty ? (
-      <Redirect to={`${match.url}/create`} />
+      <Redirect to={'/polls/create'} />
     ) : (
       <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <Button
+            className={styles.button}
+            text="Create"
+            onClick={this.handleCreatePoll}
+          />
+        </div>
         {polls.map(poll => (
           <div className={styles.poll} key={poll.id}>
             <span className={styles.description}>{poll.description}</span>
             <div className={styles.controls}>
               {poll.closed ? (
                 <Button
-                  className={styles.button}
+                  className={classnames(styles.button, styles.results)}
                   text="Results"
                   onClick={this.handleSeeResults(poll.id)}
                 />
@@ -71,7 +82,7 @@ class PollList extends PureComponent<Props> {
                     onClick={this.handleCastVote(poll.id)}
                   />
                   <Button
-                    className={classnames(styles.button, styles.alert)}
+                    className={classnames(styles.button, styles.close)}
                     text="Close"
                     onClick={this.handleClosePoll(poll.id)}
                   />
