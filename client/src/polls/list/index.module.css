@@ -2,8 +2,6 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: calc(100% - var(--header-height));
   overflow: auto;
   padding: 2rem 10%;
 }
@@ -43,7 +41,7 @@
   display: flex;
   justify-content: flex-end;
   margin-left: auto;
-  min-width: 15%;
+  min-width: 13rem;
 }
 
 .controls > .button {
