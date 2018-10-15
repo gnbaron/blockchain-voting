@@ -12,6 +12,11 @@ it('renders a warning message box', () => {
   expect(tree.hasClass('warning')).toBe(true)
 })
 
+it('renders a success message box', () => {
+  const tree = shallow(<MessageBox type="success">some win</MessageBox>)
+  expect(tree.hasClass('success')).toBe(true)
+})
+
 it('renders using a given className', () => {
   const className = 'something'
   const tree = shallow(<MessageBox className={className}>message</MessageBox>)

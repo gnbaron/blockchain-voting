@@ -11,3 +11,8 @@
   background: var(--yellow);
   color: var(--dark-grey);
 }
+
+.success {
+  background: var(--green);
+  color: var(--font-color);
+}

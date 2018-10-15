@@ -56,14 +56,14 @@ describe('poll form', () => {
       const tree = shallow(<PollForm {...defaults} />)
       tree.setState({ data: { ...data, description: '' } })
       tree.find('BasicStep').simulate('submit')
-      expect(tree.state('error')).toBe('Invalid description!')
+      expect(tree.state('error')).toBe('Invalid description')
     })
 
     it('does not advance to next step with less than 2 voters', () => {
       const tree = shallow(<PollForm {...defaults} />)
       tree.setState({ data: { ...data, voters: 1 } })
       tree.find('BasicStep').simulate('submit')
-      expect(tree.state('error')).toBe('At least 2 voters are needed!')
+      expect(tree.state('error')).toBe('At least 2 voters are needed')
     })
 
     it('goes to proposals step', () => {
@@ -95,7 +95,7 @@ describe('poll form', () => {
       const tree = shallow(<PollForm {...defaults} />)
       tree.setState({ step: 'proposals', data: { proposals: ['yes'] } })
       tree.find('ProposalStep').simulate('submit')
-      expect(tree.state('error')).toBe('At least 2 proposals are needed!')
+      expect(tree.state('error')).toBe('At least 2 proposals are needed')
     })
 
     it('saves the poll and go to the tokens step', async () => {

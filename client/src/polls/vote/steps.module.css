@@ -1,0 +1,50 @@
+.step {
+  align-items: center;
+  color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  min-height: 4rem;
+  width: 100%;
+}
+
+.description {
+  padding: 0 1.5rem;
+}
+
+.proposals {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.proposals > label {
+  padding: 1rem 1.5rem;
+}
+
+.proposals > label > input {
+  margin-right: 1rem;
+  box-shadow: none;
+}
+
+.token {
+  width: 80%;
+}
+
+.message {
+  padding: 1rem;
+}
+
+.failure {
+  width: 80%;
+}

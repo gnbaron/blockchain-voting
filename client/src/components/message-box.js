@@ -6,7 +6,7 @@ import styles from './message-box.module.css'
 type Props = {
   children: ?ReactNode,
   className?: string,
-  type: 'error' | 'warning'
+  type: 'error' | 'warning' | 'success'
 }
 
 const MessageBox = (props: Props) => {

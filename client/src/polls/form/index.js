@@ -49,9 +49,9 @@ export class PollForm extends PureComponent<Props, State> {
     } = this.state
     let error
     if (!description || description.length === 0) {
-      error = 'Invalid description!'
+      error = 'Invalid description'
     } else if (voters < 2) {
-      error = 'At least 2 voters are needed!'
+      error = 'At least 2 voters are needed'
     }
     if (error) {
       this.setState({ error })
@@ -63,7 +63,7 @@ export class PollForm extends PureComponent<Props, State> {
   handleProposalStepSubmit = () => {
     const { proposals } = this.state.data
     if (proposals.length < 2) {
-      this.setState({ error: 'At least 2 proposals are needed!' })
+      this.setState({ error: 'At least 2 proposals are needed' })
     } else {
       this.onSave()
     }

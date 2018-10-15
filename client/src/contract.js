@@ -46,7 +46,7 @@ export function castVote(
   proposalId: number
 ) {
   const { instance, web3 } = contract
-  instance.castVote(web3.fromAscii(token), pollId, proposalId)
+  return instance.castVote(web3.fromAscii(token), pollId, proposalId)
 }
 
 export async function listPolls(contract: Contract) {
