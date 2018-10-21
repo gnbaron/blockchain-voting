@@ -39,7 +39,7 @@ export class VoteForm extends PureComponent<Props, State> {
       state: { fetchStatus }
     } = this.props
     if (fetchStatus === 'UNSENT') {
-      actions.listPolls()
+      actions.fetchPolls()
     }
   }
 
@@ -85,9 +85,9 @@ export class VoteForm extends PureComponent<Props, State> {
     }
   }
 
-  handleListPolls = () => {
+  handleFetchPolls = () => {
     const { actions, history } = this.props
-    actions.listPolls()
+    actions.fetchPolls()
     history.push('/polls')
   }
 
@@ -152,7 +152,7 @@ export class VoteForm extends PureComponent<Props, State> {
               {step === 'message' && (
                 <MessageStep
                   success={success}
-                  onListPolls={this.handleListPolls}
+                  onFetchPolls={this.handleFetchPolls}
                   onResetForm={this.handleResetForm}
                 />
               )}

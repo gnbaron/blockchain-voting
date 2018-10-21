@@ -11,7 +11,9 @@ declare type Poll = {
   proposals: Proposal[]
 }
 
-declare type AppActions = {
+declare type PollResults = Array<{ proposal: number, votes: number }>
+
+declare type AppActions = {|
   castVote: (token: string, pollId: number, proposalId: number) => Promise<*>,
   closePoll: (id: number) => Promise<*>,
   createPoll: (
@@ -19,10 +21,16 @@ declare type AppActions = {
     options: string[],
     tokens: string[]
   ) => Promise<*>,
-  listPolls: () => void
-}
+  fetchPolls: () => void,
+  fetchResults: (poll: Poll) => void
+|}
 
-declare type AppState = {
-  fetchStatus: 'UNSENT' | 'LOADING' | 'DONE',
-  polls: Poll[]
-}
+declare type FetchState = 'UNSENT' | 'LOADING' | 'DONE'
+
+declare type AppState = {|
+  fetchStatus: FetchState,
+  polls: Poll[],
+  results: {
+    [id: number]: PollResults
+  }
+|}

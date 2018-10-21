@@ -86,7 +86,7 @@ describe('token step', () => {
 describe('message step', () => {
   const defaults = {
     success: false,
-    onListPolls: jest.fn(),
+    onFetchPolls: jest.fn(),
     onResetForm: jest.fn()
   }
 
@@ -103,12 +103,12 @@ describe('message step', () => {
   })
 
   it('navigates to the poll list when success', () => {
-    const onListPolls = jest.fn()
+    const onFetchPolls = jest.fn()
     const tree = shallow(
-      <MessageStep {...defaults} success onListPolls={onListPolls} />
+      <MessageStep {...defaults} success onFetchPolls={onFetchPolls} />
     )
     tree.find('Button').simulate('click')
-    expect(onListPolls).toHaveBeenCalled()
+    expect(onFetchPolls).toHaveBeenCalled()
   })
 
   it('resets the form when failed', () => {

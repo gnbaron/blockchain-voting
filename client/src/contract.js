@@ -49,7 +49,7 @@ export function castVote(
   return instance.castVote(web3.fromAscii(token), pollId, proposalId)
 }
 
-export async function listPolls(contract: Contract) {
+export async function getPolls(contract: Contract) {
   const { instance } = contract
   const length = await instance.getPollsMapSize()
   const polls = []
@@ -93,4 +93,24 @@ async function getProposal(
     id,
     description: web3.toAscii(data)
   }
+}
+
+export async function getResults(
+  contract: Contract,
+  poll: Poll
+): Promise<PollResults> {
+  const { id, proposals } = poll
+  return await Promise.all(
+    proposals.map(proposal => getVoteCount(contract, id, proposal.id))
+  )
+}
+
+async function getVoteCount(
+  contract: Contract,
+  poll: number,
+  proposal: number
+): Promise<{ proposal: number, votes: number }> {
+  const { instance } = contract
+  const count = await instance.getVoteCount(poll, proposal)
+  return { proposal, votes: count.valueOf() }
 }

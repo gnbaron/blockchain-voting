@@ -69,9 +69,9 @@ export class PollForm extends PureComponent<Props, State> {
     }
   }
 
-  handleListPolls = () => {
+  handleFetchPolls = () => {
     const { actions, history } = this.props
-    actions.listPolls()
+    actions.fetchPolls()
     history.push('/polls')
   }
 
@@ -122,7 +122,7 @@ export class PollForm extends PureComponent<Props, State> {
             {step === 'tokens' && (
               <TokenStep
                 tokens={generatedTokens}
-                onListPolls={this.handleListPolls}
+                onFetchPolls={this.handleFetchPolls}
               />
             )}
           </div>

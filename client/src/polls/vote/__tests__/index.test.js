@@ -6,7 +6,7 @@ describe('vote form', () => {
   const defaults = {
     actions: {
       castVote: jest.fn(),
-      listPolls: jest.fn()
+      fetchPolls: jest.fn()
     },
     history: { push: jest.fn() },
     match: {
@@ -175,14 +175,14 @@ describe('vote form', () => {
     })
 
     it('lists the polls', () => {
-      const actions = { ...defaults.actions, listPolls: jest.fn() }
+      const actions = { ...defaults.actions, fetchPolls: jest.fn() }
       const history = { push: jest.fn() }
       const tree = shallow(
         <VoteForm {...defaults} actions={actions} history={history} />
       )
       tree.setState({ step: 'message' })
-      tree.find('MessageStep').simulate('listPolls')
-      expect(actions.listPolls).toHaveBeenCalled()
+      tree.find('MessageStep').simulate('fetchPolls')
+      expect(actions.fetchPolls).toHaveBeenCalled()
       expect(history.push).toHaveBeenCalledWith('/polls')
     })
 

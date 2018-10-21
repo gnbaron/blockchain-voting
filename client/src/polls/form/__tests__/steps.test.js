@@ -121,7 +121,7 @@ describe('proposal step', () => {
 describe('token step', () => {
   const defaults = {
     tokens: ['abc', 'def', 'ghi'],
-    onListPolls: jest.fn()
+    onFetchPolls: jest.fn()
   }
 
   it('renders a warning', () => {
@@ -136,9 +136,9 @@ describe('token step', () => {
   })
 
   it('navigates to the poll list', () => {
-    const onListPolls = jest.fn()
-    const tree = shallow(<TokenStep {...defaults} onListPolls={onListPolls} />)
+    const onFetchPolls = jest.fn()
+    const tree = shallow(<TokenStep {...defaults} onFetchPolls={onFetchPolls} />)
     tree.find('Button').simulate('click')
-    expect(onListPolls).toHaveBeenCalled()
+    expect(onFetchPolls).toHaveBeenCalled()
   })
 })

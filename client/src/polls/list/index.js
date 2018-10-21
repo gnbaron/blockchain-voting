@@ -19,7 +19,7 @@ export class PollList extends PureComponent<Props> {
       state: { fetchStatus }
     } = this.props
     if (fetchStatus === 'UNSENT') {
-      actions.listPolls()
+      actions.fetchPolls()
     }
   }
 
@@ -36,7 +36,7 @@ export class PollList extends PureComponent<Props> {
   handleClosePoll = (id: number) => async () => {
     const { actions } = this.props
     await actions.closePoll(id)
-    actions.listPolls()
+    actions.fetchPolls()
   }
 
   handleSeeResults = (id: number) => () => {

@@ -57,7 +57,7 @@ const TokenStep = (props: {
 
 const MessageStep = (props: {
   success: boolean,
-  onListPolls: () => void,
+  onFetchPolls: () => void,
   onResetForm: () => void
 }) => {
   return (
@@ -68,7 +68,7 @@ const MessageStep = (props: {
             Vote saved successfuly!
           </MessageBox>
           <div className={styles.footer}>
-            <Button onClick={props.onListPolls} text="Polls" />
+            <Button onClick={props.onFetchPolls} text="Polls" />
           </div>
         </Fragment>
       ) : (

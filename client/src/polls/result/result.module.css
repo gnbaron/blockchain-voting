@@ -1,0 +1,58 @@
+.box {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.9375rem 0 var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  width: 30rem;
+}
+
+.content {
+  height: 100%;
+  overflow: auto;
+  padding: 1rem;
+  position: relative;
+}
+
+.results {
+  align-items: center;
+  color: var(--dark-grey);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.proposal {
+  display: flex;
+  padding: 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.description {
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.votes {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 3rem;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  min-height: 4rem;
+  width: 100%;
+}

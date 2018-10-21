@@ -9,7 +9,7 @@ describe('poll form', () => {
   const defaults = {
     actions: {
       createPoll: jest.fn(),
-      listPolls: jest.fn()
+      fetchPolls: jest.fn()
     },
     history: {},
     state: {}
@@ -131,14 +131,14 @@ describe('poll form', () => {
     })
 
     it('navigates to poll list', () => {
-      const actions = { ...defaults.actions, listPolls: jest.fn() }
+      const actions = { ...defaults.actions, fetchPolls: jest.fn() }
       const history = { push: jest.fn() }
       const tree = shallow(
         <PollForm {...defaults} actions={actions} history={history} />
       )
       tree.setState({ step: 'tokens', generatedTokens })
-      tree.find('TokenStep').simulate('listPolls')
-      expect(actions.listPolls).toHaveBeenCalled()
+      tree.find('TokenStep').simulate('fetchPolls')
+      expect(actions.fetchPolls).toHaveBeenCalled()
       expect(history.push).toHaveBeenCalledWith('/polls')
     })
   })

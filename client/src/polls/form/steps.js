@@ -116,7 +116,7 @@ class ProposalStep extends PureComponent<
   }
 }
 
-const TokenStep = (props: { tokens: string[], onListPolls: () => void }) => {
+const TokenStep = (props: { tokens: string[], onFetchPolls: () => void }) => {
   const content = props.tokens.join('\n')
   return (
     <div className={styles.step}>
@@ -130,7 +130,7 @@ const TokenStep = (props: { tokens: string[], onListPolls: () => void }) => {
         value={content}
       />
       <div className={styles.footer}>
-        <Button onClick={props.onListPolls} text="Polls" />
+        <Button onClick={props.onFetchPolls} text="Polls" />
       </div>
     </div>
   )

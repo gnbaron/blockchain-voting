@@ -12,7 +12,8 @@ import getContract, {
   castVote,
   closePoll,
   createPoll,
-  listPolls
+  getPolls,
+  getResults
 } from './contract'
 import Loading from './components/loading'
 import Header from './components/header'
@@ -27,7 +28,8 @@ export default class App extends PureComponent<{}, State> {
   state: State = {
     store: {
       fetchStatus: 'UNSENT',
-      polls: []
+      polls: [],
+      results: {}
     }
   }
 
@@ -56,18 +58,26 @@ export default class App extends PureComponent<{}, State> {
     return createPoll(contract, description, options, tokens)
   }
 
-  handleListPolls = (contract: Contract) => () => {
-    this.setState(
-      { store: { fetchStatus: 'LOADING', polls: [] } },
-      async () => {
-        this.setState({
-          store: {
-            fetchStatus: 'DONE',
-            polls: await listPolls(contract)
-          }
-        })
-      }
-    )
+  handleFetchPolls = (contract: Contract) => () => {
+    const store = { ...this.state.store, fetchStatus: 'LOADING', polls: [] }
+    this.setState({ store }, async () => {
+      this.setState({
+        store: {
+          ...this.state.store,
+          fetchStatus: 'DONE',
+          polls: await getPolls(contract)
+        }
+      })
+    })
+  }
+
+  handleFetchResults = (contract: Contract) => async (poll: Poll) => {
+    const results = {
+      ...this.state.store.results,
+      [poll.id]: await getResults(contract, poll)
+    }
+    const store = { ...this.state.store, results }
+    this.setState({ store })
   }
 
   render() {
@@ -76,7 +86,8 @@ export default class App extends PureComponent<{}, State> {
       castVote: this.handleCastVote(contract),
       closePoll: this.handleClosePoll(contract),
       createPoll: this.handleCreatePoll(contract),
-      listPolls: this.handleListPolls(contract)
+      fetchPolls: this.handleFetchPolls(contract),
+      fetchResults: this.handleFetchResults(contract)
     }
     return !contract ? (
       <Loading />

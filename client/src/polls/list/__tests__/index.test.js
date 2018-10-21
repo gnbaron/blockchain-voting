@@ -6,7 +6,7 @@ describe('poll list', () => {
   const defaults = {
     actions: {
       closePoll: jest.fn(),
-      listPolls: jest.fn()
+      fetchPolls: jest.fn()
     },
     history: {
       push: jest.fn()
@@ -38,26 +38,26 @@ describe('poll list', () => {
   }
 
   it('fetches the data if not loaded', () => {
-    const listPolls = jest.fn()
-    const actions = { listPolls }
+    const fetchPolls = jest.fn()
+    const actions = { fetchPolls }
     const state = { fetchStatus: 'UNSENT', polls: [] }
     shallow(<PollList {...defaults} actions={actions} state={state} />)
-    expect(listPolls).toHaveBeenCalled()
+    expect(fetchPolls).toHaveBeenCalled()
   })
 
   it('does not fetch data if already fetching', () => {
-    const listPolls = jest.fn()
-    const actions = { listPolls }
+    const fetchPolls = jest.fn()
+    const actions = { fetchPolls }
     const state = { fetchStatus: 'LOADING', polls: [] }
     shallow(<PollList {...defaults} actions={actions} state={state} />)
-    expect(listPolls).not.toHaveBeenCalled()
+    expect(fetchPolls).not.toHaveBeenCalled()
   })
 
   it('does not fetch data if already loaded', () => {
-    const listPolls = jest.fn()
-    const actions = { listPolls }
+    const fetchPolls = jest.fn()
+    const actions = { fetchPolls }
     shallow(<PollList {...defaults} actions={actions} />)
-    expect(listPolls).not.toHaveBeenCalled()
+    expect(fetchPolls).not.toHaveBeenCalled()
   })
 
   it('renders a loading state if loading', () => {
