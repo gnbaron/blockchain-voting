@@ -42,7 +42,7 @@ export class Results extends PureComponent<Props> {
       <div className={styles.wrapper}>
         {!poll || !poll.closed ? (
           <MessageBox className={styles.error} type="error">
-            {'Poll not found or still open'}
+            {'Votação não encontrada ou encerrada'}
           </MessageBox>
         ) : (
           <PollResult

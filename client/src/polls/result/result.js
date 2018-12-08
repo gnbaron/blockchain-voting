@@ -43,8 +43,8 @@ export default class PollResult extends PureComponent<Props> {
         <div className={styles.content}>
           <div className={styles.results}>
             <div className={classnames(styles.proposal, styles.header)}>
-              <div className={styles.description}>Proposal</div>
-              <div className={styles.votes}>Votes</div>
+              <div className={styles.description}>Proposta</div>
+              <div className={styles.votes}>Votos</div>
             </div>
             {data.map(result => {
               const proposal = proposals.find(
@@ -66,7 +66,7 @@ export default class PollResult extends PureComponent<Props> {
           </div>
         </div>
         <div className={styles.footer}>
-          <Button onClick={this.handleBack} text="Back" />
+          <Button onClick={this.handleBack} text="Voltar" />
         </div>
       </div>
     )

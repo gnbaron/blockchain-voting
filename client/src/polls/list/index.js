@@ -60,7 +60,7 @@ export class PollList extends PureComponent<Props> {
         <div className={styles.header}>
           <Button
             className={styles.button}
-            text="Create"
+            text="Criar"
             onClick={this.handleCreatePoll}
           />
         </div>
@@ -71,19 +71,19 @@ export class PollList extends PureComponent<Props> {
               {poll.closed ? (
                 <Button
                   className={classnames(styles.button, styles.results)}
-                  text="Results"
+                  text="Resultados"
                   onClick={this.handleSeeResults(poll.id)}
                 />
               ) : (
                 <Fragment>
                   <Button
                     className={styles.button}
-                    text="Vote"
+                    text="Votar"
                     onClick={this.handleCastVote(poll.id)}
                   />
                   <Button
                     className={classnames(styles.button, styles.close)}
-                    text="Close"
+                    text="Encerrar"
                     onClick={this.handleClosePoll(poll.id)}
                   />
                 </Fragment>

@@ -46,6 +46,7 @@
 
 .controls > .button {
   margin-left: 0.5rem;
+  width: auto;
 }
 
 .close {

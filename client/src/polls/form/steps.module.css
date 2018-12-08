@@ -22,9 +22,9 @@
 .voters {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 2rem;
-  width: 50%;
+  width: 70%;
 }
 
 .voters > .label {
@@ -34,6 +34,7 @@
 .voters > .input {
   width: 3rem;
   text-align: center;
+  margin-left: 1rem;
 }
 
 .proposal {

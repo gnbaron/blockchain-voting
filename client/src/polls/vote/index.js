@@ -68,7 +68,7 @@ export class VoteForm extends PureComponent<Props, State> {
       data: { token }
     } = this.state
     if (!token || token.length === 0) {
-      this.setState({ error: 'The token should be provided' })
+      this.setState({ error: 'O token deve ser informado' })
     } else {
       this.onCastVote()
     }
@@ -79,7 +79,7 @@ export class VoteForm extends PureComponent<Props, State> {
       data: { proposal }
     } = this.state
     if (proposal < 0) {
-      this.setState({ error: 'Select a proposal' })
+      this.setState({ error: 'Selecione uma proposta' })
     } else {
       this.setState({ error: undefined, step: 'token' })
     }
@@ -125,7 +125,7 @@ export class VoteForm extends PureComponent<Props, State> {
       <div className={styles.wrapper}>
         {(!poll || poll.closed || error) && (
           <MessageBox className={styles.error} type="error">
-            {error || 'Poll not found or closed'}
+            {error || 'Votação não encontrada ou fechada'}
           </MessageBox>
         )}
         {poll &&

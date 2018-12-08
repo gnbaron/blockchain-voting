@@ -16,17 +16,17 @@ const BasicStep = (props: {
     <Input
       className={styles.description}
       onChange={props.onChangeDescription}
-      placeholder="What needs to be voted?"
+      placeholder="O que precisa ser votado?"
       rows={2}
       type="textarea"
       value={props.description}
     />
     <div className={styles.voters}>
-      <span className={styles.label}>Number of voters:</span>
+      <span className={styles.label}>Número de votantes:</span>
       <Input
         className={styles.input}
         onChange={props.onChangeVoters}
-        placeholder="Voters"
+        placeholder="Votantes"
         min={1}
         max={999}
         type="number"
@@ -34,7 +34,7 @@ const BasicStep = (props: {
       />
     </div>
     <div className={styles.footer}>
-      <Button onClick={props.onSubmit} text="Next" />
+      <Button onClick={props.onSubmit} text="Próximo" />
     </div>
   </div>
 )
@@ -103,13 +103,13 @@ class ProposalStep extends PureComponent<
           onBlur={this.handleProposalBlur}
           onChange={this.handleProposalChange}
           onKeyDown={this.handleProposalKeyDown}
-          placeholder="Add a proposal"
+          placeholder="Adicionar proposta"
           maxLength="32"
           type="text"
           value={adding}
         />
         <div className={styles.footer}>
-          <Button onClick={onSubmit} text="Save" />
+          <Button onClick={onSubmit} text="Salvar" />
         </div>
       </div>
     )
@@ -121,7 +121,7 @@ const TokenStep = (props: { tokens: string[], onFetchPolls: () => void }) => {
   return (
     <div className={styles.step}>
       <MessageBox className={styles.warning} type="warning">
-        Save and send one of this tokens to each voter!
+        Salve e envie um token para cada usuário votante!
       </MessageBox>
       <Input
         className={styles.tokens}
@@ -130,7 +130,7 @@ const TokenStep = (props: { tokens: string[], onFetchPolls: () => void }) => {
         value={content}
       />
       <div className={styles.footer}>
-        <Button onClick={props.onFetchPolls} text="Polls" />
+        <Button onClick={props.onFetchPolls} text="Votações" />
       </div>
     </div>
   )

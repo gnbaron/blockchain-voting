@@ -29,7 +29,7 @@ const ProposalStep = (props: {
       ))}
     </div>
     <div className={styles.footer}>
-      <Button onClick={props.onSubmit} text="Next" />
+      <Button onClick={props.onSubmit} text="Próximo" />
     </div>
   </div>
 )
@@ -44,12 +44,12 @@ const TokenStep = (props: {
       <Input
         className={styles.token}
         onChange={props.onChangeToken}
-        placeholder="Your Token"
+        placeholder="Informe o token"
         type="text"
         value={props.token}
       />
       <div className={styles.footer}>
-        <Button onClick={props.onSubmit} text="Vote" />
+        <Button onClick={props.onSubmit} text="Votar" />
       </div>
     </div>
   )
@@ -65,10 +65,10 @@ const MessageStep = (props: {
       {props.success ? (
         <Fragment>
           <MessageBox className={styles.message} type="success">
-            Vote saved successfuly!
+            Voto registrado com sucesso!
           </MessageBox>
           <div className={styles.footer}>
-            <Button onClick={props.onFetchPolls} text="Polls" />
+            <Button onClick={props.onFetchPolls} text="Votações" />
           </div>
         </Fragment>
       ) : (
@@ -77,15 +77,15 @@ const MessageStep = (props: {
             className={classnames(styles.message, styles.failure)}
             type="error"
           >
-            Something went wrong!
+            Problema ao registrar voto!
             <br />
-            Possible causes:
-            <br /> - invalid token
-            <br /> - user already voted
-            <br /> - poll is closed
+            Possíveis causas:
+            <br /> - token inválido
+            <br /> - usuário já votou
+            <br /> - votação está encerrada
           </MessageBox>
           <div className={styles.footer}>
-            <Button onClick={props.onResetForm} text="Back" />
+            <Button onClick={props.onResetForm} text="Voltar" />
           </div>
         </Fragment>
       )}
